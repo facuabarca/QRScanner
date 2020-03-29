@@ -21,12 +21,14 @@ export class Tab1Page {
 		this.barcodeScanner.scan().then(barcodeData => {
 			
 			if(!barcodeData.cancelled) {
-				this.localDataService.saveRecord(barcodeData.format, 'algo');
+				this.localDataService.saveRecord(barcodeData.format, barcodeData.text);
 			}
 			
 		   }).catch(err => {
 			   console.log('Error', err);
-			   this.localDataService.saveRecord('Qr desde ordenador', 'https://lavanguardia.com');
+			//    this.localDataService.saveRecord('Qr desde ordenador', 'https://lavanguardia.com');
+			this.localDataService.saveRecord('Qr desde ordenador', 'geo:40.73151796986687,-74.06087294062502');
+			   
 		   });
 	}
 

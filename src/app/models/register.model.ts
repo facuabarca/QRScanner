@@ -21,7 +21,7 @@ export class Register {
 				this.icon = 'globe-outline';
 				break;
 			case 'geo:':
-				this.type = 'http';
+				this.type = 'geo:';
 				this.icon = 'navigate-outline';
 				break;
 			default:

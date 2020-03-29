@@ -13,7 +13,7 @@ export class Tab2Page {
 
 
 	sendEmail() {
-
+		this.localDateService.sendEmail();
 	}
 
 	openRegister(register: Register) {
