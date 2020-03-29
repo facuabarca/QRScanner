@@ -7,5 +7,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+	<ion-slides [options]="sliderOption">
+		<ion-slide>
+			<ion-button size="large" shape="round" expand="full" fill="outline" (click)="scan()">
+				ScanCode
+			</ion-button>
+		</ion-slide>
+	</ion-slides>
 </ion-content>
