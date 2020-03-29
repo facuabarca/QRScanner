@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { LocalDataService } from '../../services/local-data.service';
 
 @Component({
 	selector: 'app-tab1',
@@ -14,26 +15,18 @@ export class Tab1Page {
 		allowSlideNext: false
 	}
 
-	constructor(private barcodeScanner: BarcodeScanner) { }
-
-	ionViewDidEnter() {
-		console.log('ionViewDidEnter');
-	}
-
-	ionViewDidLeave() {
-		console.log('Me voy');
-	}
-
-	ionViewWillEnter() {
-		console.log('will enter')
-	}
+	constructor(private barcodeScanner: BarcodeScanner, private localDataService: LocalDataService) { }
 
 	scan() {
 		this.barcodeScanner.scan().then(barcodeData => {
-			console.log('Barcode data', barcodeData);
-			alert('ScanCode: ' + JSON.stringify(barcodeData));
+			
+			if(!barcodeData.cancelled) {
+				this.localDataService.saveRecord(barcodeData.format, 'algo');
+			}
+			
 		   }).catch(err => {
 			   console.log('Error', err);
+			   this.localDataService.saveRecord('Qr desde ordenador', 'https://lavanguardia.com');
 		   });
 	}
 
